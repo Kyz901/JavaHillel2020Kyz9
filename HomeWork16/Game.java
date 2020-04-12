@@ -44,8 +44,11 @@ public class Game {
             System.out.println("   1. ROCK ");
             System.out.println("   2. PAPER ");
             System.out.println("   3. SCISSORS ");
-            humanChoose = HumanScanner.nextInt();
+            System.out.println();
+            System.out.println("4. EXIT TO MENU(AUTO-LOSE)");
             computerChoose = rnd.nextInt(3)+1;
+            humanChoose = HumanScanner.nextInt();
+
 
             String comp = switch(computerChoose){
                 case 1 -> "ROCK";
@@ -60,11 +63,15 @@ public class Game {
                 case 1 -> "ROCK";
                 case 2 -> "PAPER";
                 case 3 ->  "SCISSORS";
-
+                case 4 -> "EXIT";
 
                 default -> throw new IllegalStateException("Unexpected value: " + computerChoose);
             };
-
+            if(humanChoose == 4){
+                result = "COMPUTER(BY AUTO-LOSE)";
+                compCount+=100000;
+                break;
+            }
             if(humanChoose == 1 && computerChoose == 2) compCount++;
             if(humanChoose == 1 && computerChoose == 3) humanCount++;
 
