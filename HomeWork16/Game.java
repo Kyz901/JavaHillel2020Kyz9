@@ -9,12 +9,8 @@ import static java.lang.Thread.sleep;
 public class Game {
 
     static int numberOfGame = 3;
-    final static char[] fareWell = new char[] {'T','H','A','N','K','S',' ',
-            'F','O','R',' ',
-            'T','H','E',' ',
-            'G','A','M','E',' ',
-            '=',')',
-            'P','S',':',' ','C','O','M','P','U','T','E','R','.',};
+    final static String fareWellString = "THANKS FOR THE GAME =)PS: COMPUTER.";
+    final static char[] fareWell = fareWellString.toCharArray();
 
     public static void bye() throws InterruptedException {
 
