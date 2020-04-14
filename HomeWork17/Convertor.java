@@ -24,7 +24,7 @@ public class Convertor {
         String yamlStr = readToString(filePath);
         yamlMap = yaml.load(yamlStr);
         String finalTextYaml = gson.toJson(yamlMap);
-        writeToFile("C://ConvertedFromYaml.json",finalTextYaml);
+        writeToFile(getRootOfFile(filePath)+"ConvertedFromYaml.json",finalTextYaml);
 
         } else if (getExtension(filePath).equals("json")){
 
@@ -35,7 +35,7 @@ public class Convertor {
         jsonMap = gson.fromJson(json, Map.class);
         yaml.dump(jsonMap,writer);
         String finalTextJson = writer.toString();
-        writeToFile("C://ConvertedFromJson.yaml",finalTextJson);
+        writeToFile(getRootOfFile(filePath)+"ConvertedFromJson.yaml",finalTextJson);
 
          } else {
         System.err.println("Wrong extension");
@@ -45,6 +45,16 @@ public class Convertor {
         System.out.println("CORRECT CONVERT");
     }
 
+    public static String getRootOfFile(String filename) {
+        String root = "";
+
+        int i = filename.lastIndexOf('/');
+        if (i > 0) {
+            root = filename.substring(0,i+1);
+        }
+
+        return root;
+    }
 
     public static String getExtension(String filename) {
         String extension = "";

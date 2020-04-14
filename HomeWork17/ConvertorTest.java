@@ -11,11 +11,13 @@ import static org.junit.Assert.*;
 
 public class ConvertorTest {
 
+
     @Test
     public void convertJsonToYamlTest(){
-        Convertor.convert("C://testJson.json");
+        String filePath = "C://testJson.json";
+        Convertor.convert(filePath);
         Yaml yaml = new Yaml();
-        String expectedString = Convertor.readToString("C://ConvertedFromJson.yaml");
+        String expectedString = Convertor.readToString(Convertor.getRootOfFile(filePath)+"ConvertedFromJson.yaml");
         Map<Object, Object> expectedMap = yaml.load(expectedString);
 
 
@@ -28,21 +30,23 @@ public class ConvertorTest {
         assertTrue(expectedMap.containsKey("age"));
         assertTrue(expectedMap.containsKey("permission"));
         assertTrue(expectedMap.containsKey("identifiers"));
+        assertEquals("C://", Convertor.getRootOfFile(filePath));
 
 
 
      }
      @Test
     public void convertYamlToJson(){
-         Convertor.convert("C://testYaml.yaml");
+        String filePath = "C://testYaml.yaml";
+         Convertor.convert(filePath);
          Gson gson = new GsonBuilder().setPrettyPrinting().create();
-         String expectedString = Convertor.readToString("C://ConvertedFromYaml.json");
+         String expectedString = Convertor.readToString(Convertor.getRootOfFile(filePath)+"ConvertedFromYaml.json");
          Map<Object, Object> expectedMap = gson.fromJson(expectedString, Map.class);
 
          assertNotNull(expectedMap);
          assertEquals(1, expectedMap.size());
          assertTrue(expectedMap.containsKey("users"));
-
+         assertEquals("C://", Convertor.getRootOfFile(filePath));
      }
 
 }
