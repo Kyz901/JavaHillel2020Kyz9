@@ -8,7 +8,7 @@ public class BankAlfa {
         this.balance = balance;
     }
 
-    public synchronized double getBalance() {
+    public double getBalance() {
         return balance;
     }
 
