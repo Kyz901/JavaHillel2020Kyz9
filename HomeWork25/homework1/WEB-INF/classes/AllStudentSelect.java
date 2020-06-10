@@ -41,7 +41,7 @@ public class AllStudentSelect extends HttpServlet{
 
             // Execute SQL query
             Statement stmt = connection.createStatement();
-            String allSelectString = "select * from students;";
+            String allSelectString = "select fullName,idOfGroup,startYearEducation,isDeleted from students;";
             ResultSet rs = stmt.executeQuery(allSelectString);
 
             // Extract data from result set
@@ -51,17 +51,15 @@ public class AllStudentSelect extends HttpServlet{
                 String fullName = rs.getString("fullName");
                 String nameOfGroup = rs.getString("nameOfGroup");
                 String yearOfStartEducation = rs.getString("startYearEducation");
+                String isDeleted = rs.getString("startYearEducation");
 
-                students.add(new Students(id, fullName, nameOfGroup, yearOfStartEducation));
+                students.add(new Students(id, fullName, nameOfGroup, yearOfStartEducation,isDeleted));
                 //Display values
 
             }
             for(int i = 0;i< students.size(); i++ ){
                 out.println("ID: " + students.get(i) + "<br>");
 
-//                out.println(", Age: " + fullName + "<br>");
-//                out.println(", First: " + nameOfGroup + "<br>");
-//                out.println(", Last: " + yearOfStartEducation + "<br>");
             }
 
             out.println("</body></html>");

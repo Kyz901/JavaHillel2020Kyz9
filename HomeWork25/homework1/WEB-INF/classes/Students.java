@@ -1,5 +1,6 @@
 package MyServlets;
 
+import javax.print.DocFlavor;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +12,8 @@ public class Students {
         private String fullName;
         private String nameOfGroup;
         private String yearOfStartEducation;
+        private String isDeleted;
+
 
     public int getId() {
         return id;
@@ -44,11 +47,20 @@ public class Students {
         this.yearOfStartEducation = yearOfStartEducation;
     }
 
-    public Students(int id, String fullName, String nameOfGroup, String yearOfStartEducation) {
+    public String getIsDeleted() {
+        return isDeleted;
+    }
+
+    public void setIsDeleted(String isDeleted) {
+        this.isDeleted = isDeleted;
+    }
+
+    public Students(int id, String fullName, String nameOfGroup, String yearOfStartEducation, String isDeleted) {
         this.id = id;
         this.fullName = fullName;
         this.nameOfGroup = nameOfGroup;
         this.yearOfStartEducation = yearOfStartEducation;
+        this.isDeleted = isDeleted;
     }
 
     @Override
@@ -58,6 +70,7 @@ public class Students {
                 ", fullName='" + fullName + '\'' +
                 ", nameOfGroup='" + nameOfGroup + '\'' +
                 ", yearOfStartEducation='" + yearOfStartEducation + '\'' +
+                ", isDeleted='" + isDeleted + '\'' +
                 '}';
     }
 }

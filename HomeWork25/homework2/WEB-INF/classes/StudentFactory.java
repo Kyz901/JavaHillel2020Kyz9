@@ -39,9 +39,10 @@ public class StudentFactory extends HttpServlet{
         String fullname = request.getParameter("fullName");
         Integer idOfGroup = Integer.parseInt(request.getParameter("idOfGroup"));
         String startYearEducation = request.getParameter("startYearEducation");
+        String isDeleted = request.getParameter("isDeleted");
 
 
-        String insertString = "insert  into students(fullName,idOfGroup,startYearEducation) values (?,?,?);";
+        String insertString = "insert  into students(fullName,idOfGroup,startYearEducation,isDeleted) values (?,?,?);";
         try {
 
 
@@ -53,6 +54,7 @@ public class StudentFactory extends HttpServlet{
             preparedStatement.setString(1,fullname);
             preparedStatement.setInt(2,idOfGroup);
             preparedStatement.setString(3,startYearEducation);
+            preparedStatement.setString(4,isDeleted);
 
             preparedStatement.executeUpdate();
 
@@ -60,6 +62,7 @@ public class StudentFactory extends HttpServlet{
             writer.println("<p>Full Name: " + fullname + "</p>");
             writer.println("<p>Id of Group: " + idOfGroup + "</p>");
             writer.println("<p>Start year of education : " + startYearEducation + "</p>");
+            writer.println("<p>Deleted : " + isDeleted + "</p>");
             writer.println("<p>" + " Student successfully insert into you DB " + "</p>");
 
             preparedStatement.close();

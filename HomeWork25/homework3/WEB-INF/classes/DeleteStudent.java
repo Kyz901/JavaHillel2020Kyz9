@@ -19,23 +19,24 @@ public class DeleteStudent extends HttpServlet {
 
 
         String fullname = request.getParameter("fullName");
+        String isDeleted = request.getParameter("isDeleted");
 
 
 
         String updateString = "update students\n" +
-                "set fullName = ? " +
+                "set isDeleted = ? " +
                 "where fullName = ? ;";
         try {
 
             PrintWriter writer = response.getWriter();
-            writer.println("<p>Full Name: " + fullname + "</p>");
+            writer.println("<p>Full Name: " + fullname + "  Deleted - " + isDeleted+"</p>");
 
 
 
             Connection connection = ConnectorDB.getConnection();
 
             PreparedStatement preparedStatement = connection.prepareStatement(updateString);
-            preparedStatement.setString(1,fullname+"(Deleted)");
+            preparedStatement.setString(1,isDeleted);
             preparedStatement.setString(2,fullname);
 
 
